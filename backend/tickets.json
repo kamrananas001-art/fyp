@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1777798807421",
+    "userId": "o4PnuwWiqiPOKeecZNsmUAWNHas1",
+    "userEmail": "a@fgmail.com",
+    "title": "i bought a fridge",
+    "description": "Fridge is not cooling well",
+    "status": "In Progress",
+    "createdAt": "2026-05-03T09:00:07.421Z",
+    "updatedAt": "2026-05-03T09:12:30.263Z"
+  },
+  {
+    "id": "1777798902015",
+    "userId": "o4PnuwWiqiPOKeecZNsmUAWNHas1",
+    "userEmail": "a@fgmail.com",
+    "title": "i bought a tv",
+    "description": "TV is not working",
+    "status": "In Progress",
+    "createdAt": "2026-05-03T09:01:42.015Z",
+    "updatedAt": "2026-05-03T09:13:12.455Z"
+  },
+  {
+    "id": "1777799267005",
+    "userId": "KSnm5NJXjgSymSAbdJSPnDfi7G43",
+    "userEmail": "a@gmail.com",
+    "title": "i bought a refrigerator",
+    "description": "fridge is not working well",
+    "status": "Resolved",
+    "createdAt": "2026-05-03T09:07:47.005Z",
+    "updatedAt": "2026-05-03T09:12:01.775Z"
+  },
+  {
+    "id": "1777799625324",
+    "userId": "KSnm5NJXjgSymSAbdJSPnDfi7G43",
+    "userEmail": "a@gmail.com",
+    "title": "hv",
+    "description": "hjj",
+    "status": "In Progress",
+    "createdAt": "2026-05-03T09:13:45.324Z",
+    "updatedAt": "2026-05-03T09:14:58.363Z"
+  }
+]

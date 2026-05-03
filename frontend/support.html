@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Nexus AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0b14',
+                        card: '#11121d',
+                        accent: '#2563eb',
+                        input: '#1a1b26',
+                        muted: '#94a3b8'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark text-white overflow-hidden">
+    <div class="h-screen flex overflow-hidden w-full fade-in relative">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-card border-r border-slate-800 flex flex-col h-full shrink-0">
+            <div class="p-6">
+                <a href="chat.html" class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-lg shadow-accent/20">
+                        <i class="fas fa-bolt text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold tracking-tight">NEXUS AI</h2>
+                        <p class="text-[10px] text-muted font-bold uppercase tracking-widest">Support Center</p>
+                    </div>
+                </a>
+
+                <nav class="space-y-2">
+                    <a href="chat.html" class="p-3 rounded-xl flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 transition">
+                        <i class="fas fa-comment-alt text-muted group-hover:text-white"></i>
+                        <span class="text-sm font-medium text-muted group-hover:text-white">Back to Chat</span>
+                    </a>
+                    <div class="sidebar-item-active p-3 rounded-xl flex items-center space-x-3 cursor-pointer group">
+                        <i class="fas fa-ticket-alt text-accent"></i>
+                        <span class="text-sm font-medium text-white">My Tickets</span>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="mt-auto p-6">
+                <div class="p-3 bg-slate-800/50 rounded-2xl flex items-center space-x-3 border border-slate-800/50">
+                    <div class="w-8 h-8 rounded-lg overflow-hidden border border-slate-700">
+                         <img id="user-avatar" src="https://ui-avatars.com/api/?name=User&background=2563eb&color=fff" alt="User">
+                    </div>
+                    <div class="overflow-hidden">
+                        <p id="user-name" class="text-xs font-bold truncate">Loading...</p>
+                        <p id="user-email" class="text-[10px] text-muted truncate">Please wait...</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col h-full overflow-y-auto p-8">
+            <div class="max-w-4xl mx-auto w-full">
+                <header class="mb-12">
+                    <h1 class="text-4xl font-bold mb-2">Submit a Ticket</h1>
+                    <p class="text-muted">Need help? Submit a request and our team will get back to you.</p>
+                </header>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Ticket Form -->
+                    <div class="glass-card p-8 rounded-3xl border border-slate-800">
+                        <form id="ticket-form" class="space-y-6" onsubmit="window.submitTicketAction(event)">
+                            <div>
+                                <label class="block text-xs font-bold text-muted uppercase mb-2 tracking-widest">Issue Title</label>
+                                <input type="text" id="ticket-title" placeholder="Brief summary of the issue" required
+                                    class="w-full bg-input border border-slate-800 rounded-xl py-4 px-4 text-sm focus:border-accent outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-muted uppercase mb-2 tracking-widest">Description</label>
+                                <textarea id="ticket-description" rows="5" placeholder="Tell us more about what's happening..." required
+                                    class="w-full bg-input border border-slate-800 rounded-xl py-4 px-4 text-sm focus:border-accent outline-none transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" id="submit-btn"
+                                class="w-full bg-accent hover:bg-accent/90 py-4 rounded-xl font-bold transition shadow-lg shadow-accent/20 flex items-center justify-center space-x-2">
+                                <span>Submit Ticket</span>
+                                <i class="fas fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Ticket History -->
+                    <div class="space-y-4">
+                        <h3 class="text-xs font-bold text-muted uppercase tracking-widest mb-4">Recent Tickets</h3>
+                        <div id="tickets-list" class="space-y-3 overflow-y-auto max-h-[60vh] pr-2">
+                            <!-- Tickets loaded here by main.js -->
+                            <div class="flex items-center justify-center py-12 space-x-3 text-muted">
+                                <i class="fas fa-circle-notch animate-spin text-accent text-xl"></i>
+                                <span class="text-sm font-medium">Loading tickets...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

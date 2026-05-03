@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Nexus AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0b14',
+                        card: '#11121d',
+                        accent: '#2563eb',
+                        input: '#1a1b26',
+                        muted: '#94a3b8'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark text-white overflow-hidden">
+    <div id="admin-auth-overlay" class="fixed inset-0 z-[200] bg-dark flex items-center justify-center p-4">
+        <div class="max-w-md w-full glass-card p-10 rounded-3xl border border-slate-800 text-center">
+            <div class="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-user-shield text-accent text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-2">Admin Verification</h2>
+            <p class="text-muted text-sm mb-8">Please enter the admin password to access the dashboard.</p>
+            <input type="password" id="admin-password" placeholder="••••••••" class="w-full bg-input border border-slate-800 rounded-xl py-4 px-4 text-center text-sm focus:border-accent outline-none mb-6">
+            <button onclick="window.verifyAdmin()" class="w-full bg-accent py-4 rounded-xl font-bold hover:bg-accent/90 transition shadow-lg shadow-accent/20">Verify Access</button>
+        </div>
+    </div>
+
+    <div id="admin-content" class="h-screen flex overflow-hidden w-full opacity-0 pointer-events-none transition-all duration-500">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-card border-r border-slate-800 flex flex-col h-full shrink-0">
+            <div class="p-6">
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/20">
+                        <i class="fas fa-shield-alt text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold tracking-tight">ADMIN CORE</h2>
+                        <p class="text-[10px] text-muted font-bold uppercase tracking-widest">Management Suite</p>
+                    </div>
+                </div>
+
+                <nav class="space-y-2">
+                    <div class="sidebar-item-active p-3 rounded-xl flex items-center space-x-3 cursor-pointer group">
+                        <i class="fas fa-list-ul text-accent"></i>
+                        <span class="text-sm font-medium text-white">All Tickets</span>
+                    </div>
+                    <a href="chat.html" class="p-3 rounded-xl flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 transition">
+                        <i class="fas fa-sign-out-alt text-muted group-hover:text-white"></i>
+                        <span class="text-sm font-medium text-muted group-hover:text-white">Exit Admin</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col h-full overflow-hidden relative p-8">
+            <header class="flex justify-between items-center mb-12">
+                <div>
+                    <h1 class="text-4xl font-bold mb-2">Ticket Requests</h1>
+                    <p class="text-muted">Review and manage support tickets from all users.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <div class="bg-card border border-slate-800 rounded-2xl p-4 flex items-center space-x-4">
+                        <div class="text-right">
+                            <p class="text-[10px] text-muted font-bold uppercase tracking-widest">Total Tickets</p>
+                            <p id="total-tickets" class="text-xl font-bold">0</p>
+                        </div>
+                        <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-ticket-alt text-accent"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Tickets Table -->
+            <div class="glass-card rounded-3xl border border-slate-800 overflow-hidden flex-1 flex flex-col">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-800/50 border-b border-slate-800">
+                            <tr>
+                                <th class="px-6 py-4 text-[10px] font-bold text-muted uppercase tracking-widest">User</th>
+                                <th class="px-6 py-4 text-[10px] font-bold text-muted uppercase tracking-widest">Subject</th>
+                                <th class="px-6 py-4 text-[10px] font-bold text-muted uppercase tracking-widest">Status</th>
+                                <th class="px-6 py-4 text-[10px] font-bold text-muted uppercase tracking-widest">Date</th>
+                                <th class="px-6 py-4 text-[10px] font-bold text-muted uppercase tracking-widest text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tickets-list" class="divide-y divide-slate-800">
+                            <!-- Tickets loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

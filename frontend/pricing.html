@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0b14',
+                        card: '#11121d',
+                        accent: '#2563eb',
+                        input: '#1a1b26',
+                        muted: '#94a3b8'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto z-50 relative">
+        <a href="index.html" class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                <i class="fas fa-robot text-white"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">AI Assistant</span>
+        </a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+
+        <div id="nav-links" class="hidden md:flex items-center space-x-8 text-sm font-medium absolute md:relative top-full left-0 right-0 bg-dark md:bg-transparent p-6 md:p-0 border-b border-slate-800 md:border-none">
+            <a href="docs.html" class="block md:inline text-muted hover:text-white transition mb-4 md:mb-0">Documentation</a>
+            <a href="pricing.html" class="block md:inline text-white font-bold transition mb-6 md:mb-0">Pricing</a>
+            <a href="signup.html" class="block md:inline-block bg-accent/10 text-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition border border-accent/20 text-center">Sign Up</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-8 py-12">
+        <h1 class="text-4xl font-bold text-center mb-4">Simple, Transparent Pricing</h1>
+        <p class="text-muted text-center mb-16 max-w-2xl mx-auto">Choose the plan that's right for you. All plans include 24/7 support and the most advanced AI models.</p>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Free -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-800 flex flex-col">
+                <h3 class="text-xl font-bold mb-2">Free</h3>
+                <p class="text-muted text-sm mb-6">Experience the power of AI</p>
+                <div class="text-4xl font-bold mb-8">$0<span class="text-lg text-muted font-normal">/mo</span></div>
+                <ul class="space-y-4 mb-12 flex-1">
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>100 messages / month</span></li>
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Basic GPT-3.5 access</span></li>
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Standard response speed</span></li>
+                </ul>
+                <a href="signup.html" class="w-full py-3 text-center rounded-xl border border-slate-700 font-bold hover:bg-slate-800 transition">Get Started</a>
+            </div>
+
+            <!-- Pro -->
+            <div class="glass-card rounded-3xl p-8 border-2 border-accent relative flex flex-col">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Most Popular</div>
+                <h3 class="text-xl font-bold mb-2">Pro</h3>
+                <p class="text-muted text-sm mb-6">For power users and professionals</p>
+                <div class="text-4xl font-bold mb-8">$20<span class="text-lg text-muted font-normal">/mo</span></div>
+                <ul class="space-y-4 mb-12 flex-1">
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Unlimited messages</span></li>
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Priority GPT-4.0 access</span></li>
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Claude 3 Opus support</span></li>
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Custom AI personalities</span></li>
+                </ul>
+                <a href="signup.html" class="w-full py-3 text-center rounded-xl bg-accent font-bold hover:bg-accent/90 transition">Go Pro</a>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-800 flex flex-col">
+                <h3 class="text-xl font-bold mb-2">Team</h3>
+                <p class="text-muted text-sm mb-6">Collaborative intelligence for teams</p>
+                <div class="text-4xl font-bold mb-8">$80<span class="text-lg text-muted font-normal">/mo</span></div>
+                <ul class="space-y-4 mb-12 flex-1">
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Everything in Pro</span></li>
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Shared workspaces</span></li>
+                    <li class="flex items-center space-x-3 text-sm text-slate-300"><i class="fas fa-check text-accent"></i> <span>Admin controls & API access</span></li>
+                </ul>
+                <a href="signup.html" class="w-full py-3 text-center rounded-xl border border-slate-700 font-bold hover:bg-slate-800 transition">Contact Sales</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

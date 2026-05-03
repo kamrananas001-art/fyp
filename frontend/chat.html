@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0b14',
+                        card: '#11121d',
+                        accent: '#2563eb',
+                        input: '#1a1b26',
+                        muted: '#94a3b8'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark text-white overflow-hidden">
+    <div class="h-screen flex overflow-hidden w-full fade-in relative">
+        <!-- Mobile Sidebar Overlay -->
+        <div class="mobile-overlay" onclick="toggleSidebar()"></div>
+
+        <!-- Sidebar -->
+        <aside class="w-72 bg-card border-r border-slate-800 flex flex-col h-full shrink-0">
+            <!-- Sidebar content remains same -->
+            <div class="p-6">
+                <a href="index.html" class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-lg shadow-accent/20">
+                        <i class="fas fa-bolt text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold tracking-tight">NEXUS AI</h2>
+                        <p class="text-[10px] text-muted font-bold uppercase tracking-widest">Pro Edition</p>
+                    </div>
+                </a>
+
+                <button class="w-full bg-accent hover:bg-accent/90 py-3 rounded-xl flex items-center justify-center space-x-2 transition mb-8 shadow-lg shadow-accent/10" onclick="newThread()">
+                    <i class="fas fa-plus text-xs"></i>
+                    <span class="text-sm font-bold">New Thread</span>
+                </button>
+
+                <div id="thread-history-container" class="space-y-1 overflow-y-auto max-h-[50vh] pr-2">
+                    <p class="text-[10px] text-muted font-bold uppercase tracking-widest mb-4 ml-2">History</p>
+                    <!-- Threads will be loaded dynamically here -->
+                </div>
+            </div>
+
+            <div class="mt-auto p-6 space-y-4">
+                <div class="p-3 rounded-xl flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 transition" onclick="showModal('settings')">
+                    <i class="fas fa-cog text-muted group-hover:text-white"></i>
+                    <span class="text-sm font-medium text-muted group-hover:text-white">Settings</span>
+                </div>
+                <a href="support.html" class="p-3 rounded-xl flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 transition">
+                    <i class="far fa-question-circle text-muted group-hover:text-white"></i>
+                    <span class="text-sm font-medium text-muted group-hover:text-white">Help & Support</span>
+                </a>
+                <a href="admin.html" class="p-3 rounded-xl flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 transition">
+                    <i class="fas fa-user-shield text-muted group-hover:text-white"></i>
+                    <span class="text-sm font-medium text-muted group-hover:text-white">Admin Dashboard</span>
+                </a>
+                <div class="p-3 bg-slate-800/50 rounded-2xl flex items-center justify-between group cursor-pointer hover:bg-slate-800 transition border border-slate-800/50">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg overflow-hidden border border-slate-700">
+                             <img id="user-avatar" src="https://ui-avatars.com/api/?name=User&background=2563eb&color=fff" alt="User">
+                        </div>
+                        <div class="overflow-hidden">
+                            <p id="user-name" class="text-xs font-bold truncate">Loading...</p>
+                            <p id="user-email" class="text-[10px] text-muted truncate">Please wait...</p>
+                        </div>
+                    </div>
+                    <button onclick="window.signOutAction()" class="fas fa-sign-out-alt text-muted text-xs group-hover:text-white bg-transparent border-none p-0 cursor-pointer"></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+            <header class="h-20 border-b border-slate-800 flex items-center justify-between px-8 bg-dark/80 backdrop-blur-md z-10">
+                <div class="flex items-center space-x-4">
+                    <button class="lg:hidden text-muted hover:text-white" onclick="toggleSidebar()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <div class="relative">
+                        <div class="w-10 h-10 bg-accent rounded-xl flex items-center justify-center">
+                            <i class="fas fa-robot text-white"></i>
+                        </div>
+                        <div class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-dark rounded-full"></div>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold">Nexus Core</h2>
+                        <div class="flex items-center space-x-2">
+                             <span class="text-[10px] text-green-500 font-bold uppercase tracking-widest">Online</span>
+                             <span class="text-[10px] text-muted">• GPT-4.0 Architecture</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6 text-muted">
+                    <i class="fas fa-search cursor-pointer hover:text-white transition" onclick="showSearch()"></i>
+                    <i class="fas fa-ellipsis-v cursor-pointer hover:text-white transition" onclick="showMenu()"></i>
+                </div>
+            </header>
+
+            <div id="messages-container" class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 md:space-y-8 pb-12">
+                <div class="text-center py-4">
+                    <span class="text-[10px] text-muted font-bold uppercase tracking-[0.2em]">Today</span>
+                </div>
+                <!-- Initial Message -->
+                <div class="flex space-x-6 max-w-4xl message-bubble">
+                    <div class="w-10 h-10 bg-accent rounded-xl flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-robot text-white"></i>
+                    </div>
+                    <div class="flex-1 space-y-4">
+                        <div class="glass-card p-6 rounded-2xl rounded-tl-none leading-relaxed text-slate-200">
+                            Hello <span id="welcome-name" class="font-bold text-white">there</span>! 👋 I'm your AI assistant. How can I help you today?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-6 md:p-8 bg-dark border-t border-slate-800/50">
+                <div class="max-w-4xl mx-auto flex flex-col items-center">
+                    <div class="w-full glass-card rounded-full p-2 flex items-center space-x-2 border border-slate-700/50 shadow-2xl">
+                        <!-- Attachment Trigger -->
+                        <button onclick="document.getElementById('file-upload').click()" class="w-10 h-10 rounded-full flex items-center justify-center text-muted hover:text-white hover:bg-slate-800 transition-all shrink-0">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <input type="file" id="file-upload" class="hidden">
+                        
+                        <textarea id="user-input" rows="1" placeholder="Ask anything..." class="flex-1 bg-transparent border-none resize-none text-sm focus:ring-0 placeholder-muted/60 py-3 px-2 max-h-32 overflow-y-auto scrollbar-hide" onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); sendMessage(); }"></textarea>
+                        
+                        <div class="flex items-center pr-2">
+                            <button id="send-button" onclick="sendMessage()" class="w-10 h-10 bg-white text-dark rounded-full flex items-center justify-center hover:bg-slate-200 transition-all shadow-lg shrink-0 group">
+                                <i class="fas fa-arrow-up text-sm group-hover:-translate-y-0.5 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-muted mt-4 font-medium opacity-60">Nexus AI can make mistakes. Check important info.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modal-container" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-dark/60 backdrop-blur-sm transition-all">
+        <div id="modal-content" class="w-full max-w-2xl glass-card rounded-3xl p-8 scale-95 transition-transform">
+            <!-- Modal Body injected by script -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

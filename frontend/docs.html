@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0b14',
+                        card: '#11121d',
+                        accent: '#2563eb',
+                        input: '#1a1b26',
+                        muted: '#94a3b8'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto z-50 relative border-b border-slate-800/50">
+        <a href="index.html" class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                <i class="fas fa-robot text-white"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">AI Assistant</span>
+        </a>
+        
+        <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+
+        <div id="nav-links" class="hidden md:flex items-center space-x-8 text-sm font-medium absolute md:relative top-full left-0 right-0 bg-dark md:bg-transparent p-6 md:p-0 border-b border-slate-800 md:border-none">
+            <a href="docs.html" class="block md:inline text-white font-bold transition mb-4 md:mb-0">Documentation</a>
+            <a href="pricing.html" class="block md:inline text-muted hover:text-white transition mb-6 md:mb-0">Pricing</a>
+            <a href="signup.html" class="block md:inline-block bg-accent/10 text-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition border border-accent/20 text-center">Sign Up</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-8 py-12 flex flex-col lg:flex-row lg:space-x-12">
+        <aside class="w-64 flex-shrink-0 space-y-8 hidden lg:block">
+            <div>
+                <h4 class="text-[10px] font-bold text-muted uppercase tracking-widest mb-4">Getting Started</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="text-accent font-medium">Quick Start Guide</a></li>
+                    <li><a href="#" class="text-muted hover:text-white transition">Installation</a></li>
+                    <li><a href="#" class="text-muted hover:text-white transition">Core Concepts</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-bold text-muted uppercase tracking-widest mb-4">Features</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="text-muted hover:text-white transition">Chat Interface</a></li>
+                    <li><a href="#" class="text-muted hover:text-white transition">API Integration</a></li>
+                    <li><a href="#" class="text-muted hover:text-white transition">Context Management</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <article class="flex-1 max-w-3xl">
+            <h1 class="text-4xl font-bold mb-8">Documentation</h1>
+            <p class="text-lg text-slate-300 mb-6 leading-relaxed">Welcome to the AI Assistant developer documentation. Our platform provides a seamless way to integrate advanced intelligence into your workflow.</p>
+            
+            <h2 class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-slate-800">Introduction</h2>
+            <p class="text-slate-300 leading-relaxed mb-6">AI Assistant is a state-of-the-art platform designed to bring the power of GPT-4.0 and other leading language models directly to your workspace. Whether you're a developer or a pro-user, our interface is optimized for speed and clarity.</p>
+
+            <h2 class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-slate-800">Quick Start</h2>
+            <div class="glass-card p-6 rounded-2xl bg-slate-900/50 border border-slate-800 mb-8">
+                <p class="text-sm text-slate-400 mb-4 font-mono">npm install @nexus-ai/core</p>
+                <button class="text-xs text-accent font-bold flex items-center space-x-2 hover:text-white transition">
+                    <i class="far fa-copy text-sm"></i>
+                    <span>Copy Install Command</span>
+                </button>
+            </div>
+            
+            <h3 class="text-xl font-bold mb-4">Authentication</h3>
+            <p class="text-slate-300 leading-relaxed mb-6">All requests to our API require an API key. You can find your key in the <a href="chat.html" class="text-accent hover:underline">Settings</a> of your dashboard under the "Data & Keys" tab.</p>
+        </article>
+    </main>
+
+    <script src="script.js"></script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
