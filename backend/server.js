@@ -83,7 +83,7 @@ app.put('/api/tickets/:id/status', (req, res) => {
 // ─── AI Chat ──────────────────────────────────────────────────────────────────
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.openrouter,
+  apiKey: process.env.openrouter || 'placeholder',
   defaultHeaders: {
     "HTTP-Referer": "http://localhost:3000",
     "X-OpenRouter-Title": "Electric Store Assistant",
@@ -108,7 +108,7 @@ app.post('/api/chat', async (req, res) => {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "qwen/qwen-turbo",
+      model: "qwen/qwen-plus",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: message }
@@ -130,3 +130,5 @@ app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
   console.log(`📋 Tickets stored at: ${TICKETS_FILE}`);
 });
+
+// Triggered restart to load updated .env variables
